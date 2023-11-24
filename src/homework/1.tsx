@@ -14,13 +14,7 @@ export function Observer({ children, onContentEndVisible }: Props) {
   useEffect(() => {
     // Вказуємо правильний тип для options,
 
-    interface Options {
-      rootMargin: string;
-      threshold: number;
-      root: null;
-    }
-
-    const options: Options = {
+    const options: IntersectionObserverInit = {
       rootMargin: "0px",
       threshold: 1.0,
       root: null,
