@@ -11,14 +11,18 @@ type MenuIds = "first" | "second" | "last";
 type Menu = { id: MenuIds; title: string };
 
 //  Decision HW 4 tsx
-type SelectedMenu = Pick<Menu, "id">;
+type SelectedMenu = Pick<Menu, "id">; // Описати тип SelectedMenu:
+// Це має бути об'єкт, який містить id з типом MenuIds
 
 type MenuSelected = {
-  selectedMenu: SelectedMenu;
+  selectedMenu: SelectedMenu; // Описати тип MenuSelected:
+  // Цей тип є об'єктом, що містить selectedMenu
 };
 
 type MenuAction = {
-  onSelectedMenu: (obj: SelectedMenu) => void;
+  onSelectedMenu: (obj: SelectedMenu) => void; // Описати тип MenuAction:
+  // Цей тип являє собою об'єкт з методом onSelectedMenu,
+  // який приймає об'єкт типу SelectedMenu як аргумент повертає void.
 };
 
 // Додаємо тип Menu Selected
@@ -34,12 +38,15 @@ const MenuActionContext = createContext<MenuAction>({
 });
 
 type PropsProvider = {
-  children: ReactNode; // Додаємо тип для children
+  children: ReactNode; // Описуємо тип PropsProvider:
+  // Описуємо правильний тип для дітей
 };
 
 function MenuProvider({ children }: PropsProvider) {
   // Додаємо тип для SelectedMenu він повинен містити { id }
-  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>({});
+  const [selectedMenu, setSelectedMenu] = useState<SelectedMenu>({
+    id: "first",
+  });
 
   const menuContextAction = useMemo(
     () => ({
@@ -65,7 +72,8 @@ function MenuProvider({ children }: PropsProvider) {
 }
 
 type PropsMenu = {
-  menus: Menu[]; // Додаємо вірний тип для меню
+  menus: Menu[]; // Описати тип PropsMenu:
+  //  Описуємо тип для menus, він має бути від типу Menu
 };
 
 function MenuComponent({ menus }: PropsMenu) {
